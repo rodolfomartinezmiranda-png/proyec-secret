@@ -1,0 +1,25 @@
+-- SQLBook: Code
+SELECT * FROM city LIMIT 10;
+-- SQLBook: Code
+SELECT current_database(), current_user, now();123456
+-- SQLBook: Markup
+
+-- SQLBook: Code
+-- Active: 1775227739901@@127.0.0.1@5432
+
+-- SQLBook: Code
+CREATE TABLE flags (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(45),
+    flag TEXT
+);
+-- SQLBook: Code
+INSERT INTO flags (name, flag) VALUES 
+('Afghanistan', 'AF'),
+('Albania', 'AL'),
+('Algeria', 'DZ'),
+('Andorra', 'AD'),
+('Angola', 'AO'),
+('Argentina', 'AR');
+-- SQLBook: Code
+SELECT * FROM flags LIMIT 10;

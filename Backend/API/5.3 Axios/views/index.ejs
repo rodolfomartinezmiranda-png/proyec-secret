@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/main.css">
+  <title>I'm Bored</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Busquemos algo que puedas hacer ✌️</h1>
+
+    <form action="/" id="form" class="form" method="POST">
+      <select name="type" class="form-select">
+        <option value="" disabled selected>Tipo</option>
+        <option value="education">Educación</option>
+        <option value="recreational">Recreación</option>
+        <option value="social">Social</option>
+        <option value="diy">DIY</option>
+        <option value="charity">Caridad</option>
+        <option value="cooking">Cocina</option>
+        <option value="relaxation">Relajación</option>
+        <option value="music">Música</option>
+        <option value="busywork">Ocupación</option>
+      </select>
+
+      <select name="participants" class="form-select">
+        <option value="" disabled selected>Participantes</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <button type="submit" class="form-button">Ir</button>
+    </form>
+
+    <div id="tag-line" class="tagline">
+      <% if (locals.data) { %>
+        <h2 class="activity-text">
+          <%= data.activity %>
+        </h2>
+        <div class="activity-type">
+          <%= data.type %>
+        </div>
+      <% } %>
+
+      <% if (locals.error) { %>
+        <h2 class="activity-text">
+          <%= error %>
+        </h2>
+      <% } %>
+    </div>
+  </div>
+</body>
+
+</html>

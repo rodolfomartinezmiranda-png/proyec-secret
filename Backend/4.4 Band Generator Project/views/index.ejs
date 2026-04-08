@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Band Generator</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <h1>
+    <%= adjective %> <%= noun %>
+  </h1>
+
+  <form action="/submit" method="POST">
+    <button type="submit">Generate Name</button>
+  </form>
+
+  <footer>
+    <p>© <%= new Date().getFullYear() %></p>
+  </footer>
+
+</body>
+</html>
+<!-- Step 3 Add Footer -->

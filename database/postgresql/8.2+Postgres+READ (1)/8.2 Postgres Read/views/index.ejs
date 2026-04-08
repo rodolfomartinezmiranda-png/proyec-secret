@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Flag Quiz - Arquimagic26</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <div class="container text-center">
+    <h1>Score: <%= score %></h1>
+
+    <% if (locals.question && question.flag) { %>
+      <div class="flag-container">
+        <img src="https://flagcdn.com/w640/<%= question.flag %>.png" 
+             alt="Bandera de <%= question.name %>" 
+             style="max-width: 400px; border: 1px solid #ddd; margin: 20px 0;">
+      </div>
+      
+      <form action="/submit" method="POST">
+        <input type="text" name="answer" placeholder="Nombre del país..." autofocus autocomplete="off">
+        <button type="submit">ENVIAR</button>
+      </form>
+    <% } else { %>
+      <p>Error: No se pudieron cargar datos. Revisa la base de datos.</p>
+    <% } %>
+  </div>
+</body>
+</html>
