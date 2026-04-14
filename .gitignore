@@ -1,8 +1,8 @@
-node_modules/
-.DS_Store
-__MACOSX/
+# Bloquear archivos de zona de Windows
 *.Zone.Identifier
-node_modules/
+# Bloquear archivos temporales de Mac
 .DS_Store
+# Bloquear variables de entorno
 .env
-*.Zone.Identifier
+# Bloquear dependencias
+node_modules/
