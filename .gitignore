@@ -1,5 +1,4 @@
-nnode_modules/
+node_modules/
 **/node_modules/
 *.Zone.Identifier
 .DS_Store
-.env
