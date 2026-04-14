@@ -1,8 +1,3 @@
-# Bloquear archivos de zona de Windows
-*.Zone.Identifier
-# Bloquear archivos temporales de Mac
-.DS_Store
-# Bloquear variables de entorno
-.env
-# Bloquear dependencias
-node_modules/
+echo "*.Zone.Identifier" >> .gitignore
+git add .gitignore
+git commit -m "Ignorar archivos de zona de Windows"
