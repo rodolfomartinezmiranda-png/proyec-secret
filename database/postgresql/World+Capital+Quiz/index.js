@@ -1,24 +1,39 @@
 import express from "express";
 import bodyParser from "body-parser";
+import pg from "pg";
 
 const app = express();
 const port = 3000;
 
-let quiz = [
-  { country: "France", capital: "Paris" },
-  { country: "United Kingdom", capital: "London" },
-  { country: "United States of America", capital: "New York" },
-];
+// Configuración de la base de datos ajustada a tu servidor Postgres-WSL
+const db = new pg.Client({
+  user: "arquimagic26", // El usuario que aparece en tu pgAdmin
+  host: "localhost",    // "localhost" funciona porque el código y la DB están ambos en WSL
+  database: "world",    // Asegúrate de haber restaurado la tabla 'capitals' aquí
+  password: "198726", // Reemplaza con la contraseña de tu usuario en Postgres
+  port: 5432,
+});
 
-let totalCorrect = 0;
+db.connect();
 
-// Middleware
+let quiz = [];
+
+// Cargar los datos de la base de datos al iniciar
+db.query("SELECT * FROM capitals", (err, res) => {
+  if (err) {
+    console.error("Error al ejecutar la consulta", err.stack);
+  } else {
+    quiz = res.rows;
+  }
+  // No cerramos la conexión aquí para poder seguir consultando después
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let currentQuestion = {};
+let totalCorrect = 0;
 
-// GET home page
+// Configuración de la lógica del juego
 app.get("/", async (req, res) => {
   totalCorrect = 0;
   await nextQuestion();
@@ -26,13 +41,18 @@ app.get("/", async (req, res) => {
   res.render("index.ejs", { question: currentQuestion });
 });
 
-// POST a new post
+let currentQuestion = {};
+
+async function nextQuestion() {
+  const randomCountry = quiz[Math.floor(Math.random() * quiz.length)];
+  currentQuestion = randomCountry;
+}
+
 app.post("/submit", (req, res) => {
   let answer = req.body.answer.trim();
   let isCorrect = false;
   if (currentQuestion.capital.toLowerCase() === answer.toLowerCase()) {
     totalCorrect++;
-    console.log(totalCorrect);
     isCorrect = true;
   }
 
@@ -44,12 +64,6 @@ app.post("/submit", (req, res) => {
   });
 });
 
-async function nextQuestion() {
-  const randomCountry = quiz[Math.floor(Math.random() * quiz.length)];
-
-  currentQuestion = randomCountry;
-}
-
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });
