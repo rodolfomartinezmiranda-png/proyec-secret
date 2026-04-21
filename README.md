@@ -1,44 +1,33 @@
+🚩 Flag Quiz - Backend & Relational Database Integration This interactive web application is designed to challenge users' geographical knowledge while demonstrating robust server-side logic and database management. It was developed as a key milestone within a professional Full Stack Web Development program.
 
+🛠️ Technical Stack Runtime Environment: Node.js
 
-🚀 Full Stack Project: Backend & SQL Architecture
-This repository contains the server-side logic and relational data management modules for the proyec-secret project. The core focus of this development phase is the implementation of a scalable architecture utilizing the MVC (Model-View-Controller) pattern, robust relational database integration, and strict security standards for handling sensitive information.
+Web Framework: Express.js for sophisticated routing and middleware management
 
-🛠️ Tech Stack
-Runtime: Node.js
+Database Engine: PostgreSQL for relational data persistence and optimized country-flag indexing
 
-Framework: Express.js
+View Engine: EJS (Embedded JavaScript templates) for high-performance server-side rendering
 
-Database: PostgreSQL
+Styling: Custom CSS following modular design principles
 
-Languages: JavaScript (ES6+), SQL, EJS
+⚙️ Key Features Real-time Persistence: Seamless integration with a PostgreSQL database for live data retrieval.
 
-Package Management: NPM
+State Management: Server-side cumulative scoring system logic.
 
-🏗️ Project Structure
-The file organization adheres to industry best practices to ensure code maintainability, readability, and horizontal scalability:
+Robust Validation: Server-side response verification to ensure data integrity.
 
-📂 /Backend: Express server configuration, API routing, and business logic controllers.
+Responsive Architecture: Fully adaptive UI themed around global iconography.
 
-📂 /database/postgresql: Initialization scripts, Data Definition Language (DDL) schemas, and complex Data Manipulation Language (DML) queries.
+📦 Installation & Configuration Clone the Repository:
 
-📂 /Architect Services Portfolio: Specialized module for sector-specific service integration.
+Bash git clone https://github.com/rodolfomartinezmiranda-png/Postgres-Flag-Quiz.git Dependency Management:
 
-📄 solution.js: Main application entry point.
+Bash npm install Database Migration: Execute the provided SQL initialization scripts found in the introduction folder to set up your PostgreSQL schema.
 
-📄 .gitignore: Critical security configuration to exclude node_modules and environment variables.
+Environment Security: Create a .env file to securely abstract your database credentials.
 
-⚙️ Technical Features
-Relational Data Modeling: Implementation of normalized database schemas to optimize data integrity and query performance.
+Execution:
 
-RESTful API Architecture: Structured endpoints designed for comprehensive CRUD (Create, Read, Update, Delete) operations.
+Bash nodemon index.js 👨‍💻 Engineering & Development Rodolfo Jose Martinez Miranda (Daedalus) Software Architect & Full Stack Developer Barranquilla, Colombia 🇨🇴
 
-Dynamic View Management: Server-side rendering implemented through the EJS template engine for seamless data-to-view integration.
-
-Professional Version Control: Systematic commit history and clean synchronization workflows (maintained under the Daedalus profile).
-
-🔑 Security & Standards
-Environment Abstraction: Decoupling sensitive credentials (database keys, API tokens) from the source code using .env management.
-
-Separation of Concerns: Implementation of the MVC architectural pattern to isolate data logic from user interface components.
-
-Schema Validation: Ensuring relational integrity through SQL constraints and robust backend validation logic.
+Project maintained under the TrazoDigitalWeb brand — specialized technology consultancy and software solutions.
