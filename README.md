@@ -1,35 +1,44 @@
-🚀 Full Stack Project: Backend & SQL Architecture
-Este repositorio contiene el módulo de lógica de servidor y gestión de datos relacionales para el proyecto proyec-secret. El enfoque principal de este capítulo ha sido la implementación de una arquitectura escalable utilizando el patrón MVC (Modelo-Vista-Controlador), la integración robusta con bases de datos SQL y la seguridad en la gestión de variables de entorno.
 
-🛠️ Tecnologías Utilizadas
+
+🚀 Full Stack Project: Backend & SQL Architecture
+This repository contains the server-side logic and relational data management modules for the proyec-secret project. The core focus of this development phase is the implementation of a scalable architecture utilizing the MVC (Model-View-Controller) pattern, robust relational database integration, and strict security standards for handling sensitive information.
+
+🛠️ Tech Stack
 Runtime: Node.js
 
 Framework: Express.js
 
-Base de Datos: PostgreSQL
+Database: PostgreSQL
 
-Lenguajes: JavaScript (ES6+), SQL, EJS
+Languages: JavaScript (ES6+), SQL, EJS
 
-Gestión de Dependencias: NPM
+Package Management: NPM
 
-🏗️ Estructura del Proyecto
-La organización de archivos sigue las mejores prácticas para asegurar el mantenimiento y la escalabilidad del código:
+🏗️ Project Structure
+The file organization adheres to industry best practices to ensure code maintainability, readability, and horizontal scalability:
 
-📂 /Backend: Servidor Express, rutas y controladores de la lógica de negocio.
+📂 /Backend: Express server configuration, API routing, and business logic controllers.
 
-📂 /database/postgresql: Scripts de inicialización, esquemas de tablas (DDL) y consultas complejas (DML).
+📂 /database/postgresql: Initialization scripts, Data Definition Language (DDL) schemas, and complex Data Manipulation Language (DML) queries.
 
-📂 /Architect Services Portfolio: Integración de servicios específicos del sector arquitectura.
+📂 /Architect Services Portfolio: Specialized module for sector-specific service integration.
 
-📄 solution.js: Punto de entrada principal de la aplicación.
+📄 solution.js: Main application entry point.
 
-📄 .gitignore: Configuración crítica para la exclusión de node_modules y datos sensibles.
+📄 .gitignore: Critical security configuration to exclude node_modules and environment variables.
 
-⚙️ Características Técnicas
-Modelado de Datos: Diseño de bases de datos relacionales normalizadas para optimizar la integridad de la información.
+⚙️ Technical Features
+Relational Data Modeling: Implementation of normalized database schemas to optimize data integrity and query performance.
 
-RESTful API: Endpoints estructurados para operaciones CRUD completas.
+RESTful API Architecture: Structured endpoints designed for comprehensive CRUD (Create, Read, Update, Delete) operations.
 
-Manejo de Vistas: Renderizado dinámico mediante el motor de plantillas EJS.
+Dynamic View Management: Server-side rendering implemented through the EJS template engine for seamless data-to-view integration.
 
-Control de Versiones: Historial de commits organizado con un flujo de trabajo profesional (Sincronización final bajo perfil Daedalus).
+Professional Version Control: Systematic commit history and clean synchronization workflows (maintained under the Daedalus profile).
+
+🔑 Security & Standards
+Environment Abstraction: Decoupling sensitive credentials (database keys, API tokens) from the source code using .env management.
+
+Separation of Concerns: Implementation of the MVC architectural pattern to isolate data logic from user interface components.
+
+Schema Validation: Ensuring relational integrity through SQL constraints and robust backend validation logic.
