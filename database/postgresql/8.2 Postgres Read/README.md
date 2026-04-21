@@ -1,45 +1,46 @@
-# 🚩 Flag Quiz - Backend Practice
+🚩 Flag Quiz - Backend & Relational Database Integration
+This interactive web application is designed to challenge users' geographical knowledge while demonstrating robust server-side logic and database management. It was developed as a key milestone within a professional Full Stack Web Development program.
 
-Este proyecto es una aplicación web interactiva diseñada para poner a prueba los conocimientos geográficos de los usuarios. Desarrollada como parte de mi formación en el bootcamp de Full Stack Web Development de Angela Yu.
+🛠️ Technical Stack
+Runtime Environment: Node.js
 
-## 🚀 Tecnologías Utilizadas
+Web Framework: Express.js for sophisticated routing and middleware management
 
-* **Node.js**: Entorno de ejecución para el backend.
-* **Express**: Framework para la gestión de rutas y servidor.
-* **PostgreSQL**: Base de datos relacional para el almacenamiento de países y banderas.
-* **EJS (Embedded JavaScript templates)**: Motor de plantillas para renderizar las vistas dinámicamente.
-* **CSS**: Estilos personalizados (TrazoDigital Design).
+Database Engine: PostgreSQL for relational data persistence and optimized country-flag indexing
 
-## 🛠️ Funcionalidades
+View Engine: EJS (Embedded JavaScript templates) for high-performance server-side rendering
 
-* Conexión en tiempo real con una base de datos PostgreSQL.
-* Sistema de puntuación acumulativa.
-* Validación de respuestas del lado del servidor.
-* Interfaz responsiva con temática de banderas mundiales.
+Styling: Custom CSS following modular design principles
 
-## 📦 Instalación y Configuración
+⚙️ Key Features
+Real-time Persistence: Seamless integration with a PostgreSQL database for live data retrieval.
 
-1.  Clona el repositorio:
-    ```bash
-    git clone [https://github.com/rodolfomartinezmiranda-png/Postgres-Flag-Quiz.git](https://github.com/rodolfomartinezmiranda-png/Postgres-Flag-Quiz.git)
-    ```
-2.  Instala las dependencias:
-    ```bash
-    npm install
-    ```
-3.  Configura tu base de datos PostgreSQL con los scripts incluidos en la carpeta de introducción.
-4.  Crea un archivo `.env` con tus credenciales de base de datos.
-5.  Inicia el servidor:
-    ```bash
-    nodemon index.js
-    ```
-    Interfaz<img width="1366" height="768" alt="Screenshot 2026-04-15 063035" src="https://github.com/user-attachments/assets/0218733c-c870-459b-98d8-6d0f0e7faa64" />
+State Management: Server-side cumulative scoring system logic.
 
+Robust Validation: Server-side response verification to ensure data integrity.
 
-## 👨‍💻 Desarrollado por
-**Rodolfo Jose Martinez Miranda**
-*Arquitecto y Desarrollador de Software en formación.*
+Responsive Architecture: Fully adaptive UI themed around global iconography.
+
+📦 Installation & Configuration
+Clone the Repository:
+
+Bash
+git clone https://github.com/rodolfomartinezmiranda-png/Postgres-Flag-Quiz.git
+Dependency Management:
+
+Bash
+npm install
+Database Migration: Execute the provided SQL initialization scripts found in the introduction folder to set up your PostgreSQL schema.
+
+Environment Security: Create a .env file to securely abstract your database credentials.
+
+Execution:
+
+Bash
+nodemon index.js
+👨‍💻 Engineering & Development
+Rodolfo Jose Martinez Miranda (Daedalus)
+Software Architect & Full Stack Developer
 Barranquilla, Colombia 🇨🇴
 
----
-*Proyecto bajo la marca **TrazoDigitalWeb** - Consultoría tecnológica y soluciones de software.*
+Project maintained under the TrazoDigitalWeb brand — specialized technology consultancy and software solutions.
