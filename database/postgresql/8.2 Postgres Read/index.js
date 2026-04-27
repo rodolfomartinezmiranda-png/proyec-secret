@@ -3,32 +3,31 @@ import bodyParser from "body-parser";
 import pg from "pg";
 import dotenv from "dotenv";
 
-// 1. Configuración de variables de entorno (Debe ir al principio)
+// 1. Configuración de variables de entorno (Solo una vez)
 dotenv.config();
 
 const app = express();
 const port = 3000;
 
-// 2. Configuración de la conexión a PostgreSQL
-// Asegúrate de que tu archivo .env tenga los nombres correctos
+// 2. Configuración de la base de datos usando tu .env
 const db = new pg.Client({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: process.env.PG_PORT,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 db.connect()
-  .then(() => console.log("Conexión exitosa a la base de datos ✅"))
-  .catch((err) => console.error("Error de conexión ❌", err.stack));
+  .then(() => console.log("✅ Conexión exitosa a la base de datos"))
+  .catch((err) => console.error("❌ Error de conexión", err.stack));
 
-// Middleware
+// Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 let quiz = [];
-let totalScore = 0; // Variable global para el puntaje
+let totalScore = 0;
 let currentQuestion = {};
 
 // 3. Carga inicial de datos
@@ -37,7 +36,7 @@ db.query("SELECT * FROM flags", (err, res) => {
     console.error("Error al cargar banderas:", err.stack);
   } else {
     quiz = res.rows;
-    console.log("Banderas cargadas correctamente.");
+    console.log("🚩 Banderas cargadas correctamente.");
   }
 });
 
@@ -47,19 +46,18 @@ function nextQuestion() {
   currentQuestion = quiz[randomIndex];
 }
 
-// RUTA PRINCIPAL (GET)
+// 4. RUTA PRINCIPAL (GET)
 app.get("/", (req, res) => {
-  totalScore = 0; // Reiniciamos al empezar de nuevo
+  totalScore = 0; // Reiniciamos puntaje al empezar
   nextQuestion();
-  
-  // Enviamos totalScore para evitar el error "is not defined" en EJS
+  console.log(currentQuestion);
   res.render("index.ejs", { 
-    question: currentQuestion,
+    question: currentQuestion, 
     totalScore: totalScore 
   });
 });
 
-// RUTA DE ENVÍO (POST)
+// 5. RUTA DE ENVÍO (POST)
 app.post("/submit", (req, res) => {
   let answer = req.body.answer.trim();
   let isCorrect = false;
@@ -79,6 +77,7 @@ app.post("/submit", (req, res) => {
   });
 });
 
+// 6. Encendido del servidor
 app.listen(port, () => {
-  console.log(`Servidor activo en http://localhost:${port} 🚀`);
+  console.log(`🚀 Servidor activo en http://localhost:${port}`);
 });
