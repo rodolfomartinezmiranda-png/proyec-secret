@@ -6,14 +6,16 @@ const app = express();
 const port = 3000;
 
 // Configuración de la base de datos (Postgres en WSL)
+import 'dotenv/config'; // Esto carga las variables al inicio
+
+// ... luego en la configuración de la DB:
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "secrets",
-  password: "1234", // Asegúrate de poner tu clave real
-  port: 5432,
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
 });
-db.connect();
 
 // --- MIDDLEWARE ---
 // CRUCIAL: Esto permite que 'req.body' capture los datos del formulario

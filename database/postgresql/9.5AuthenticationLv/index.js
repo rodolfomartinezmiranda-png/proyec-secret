@@ -1,34 +1,35 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
-import bcrypt from "bcrypt";
 import passport from "passport";
-import { Strategy } from "passport-local";
-import GoogleStrategy from "passport-google-oauth2";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import session from "express-session";
 import env from "dotenv";
 
 const app = express();
 const port = 3000;
-const saltRounds = 10;
 env.config();
 
-// Configuración de la Sesión
+// 1. Middlewares de Sesión y App
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // 1 día
+    }
   })
 );
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Conexión a Base de Datos (PostgreSQL)
+// 2. Conexión a PostgreSQL
 const db = new pg.Client({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
@@ -38,58 +39,7 @@ const db = new pg.Client({
 });
 db.connect();
 
-// --- RUTAS DE NAVEGACIÓN ---
-
-app.get("/", (req, res) => {
-  res.render("home.ejs");
-});
-
-app.get("/login", (req, res) => {
-  res.render("login.ejs");
-});
-
-app.get("/register", (req, res) => {
-  res.render("register.ejs");
-});
-
-app.get("/logout", (req, res) => {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
-});
-
-app.get("/secrets", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render("secrets.ejs");
-  } else {
-    res.redirect("/login");
-  }
-});
-
-// --- AUTENTICACIÓN CON GOOGLE ---
-
-// 1. Ruta que activa el botón de Google
-app.get(
-  "/auth/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
-  })
-);
-
-// 2. Ruta de retorno (Callback)
-app.get(
-  "/auth/google/secrets",
-  passport.authenticate("google", {
-    successRedirect: "/secrets",
-    failureRedirect: "/login",
-  })
-);
-
-// --- ESTRATEGIA DE PASSPORT GOOGLE ---
-
+// 3. Estrategia de Google (Aquí se llena la DB)
 passport.use(
   "google",
   new GoogleStrategy(
@@ -101,16 +51,21 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, cb) => {
       try {
-        const result = await db.query("SELECT * FROM users WHERE email = $1", [
-          profile.email,
-        ]);
+        const userEmail = profile.emails[0].value;
+        const googleId = profile.id;
+
+        // Buscamos al usuario
+        const result = await db.query("SELECT * FROM users WHERE email = $1", [userEmail]);
+        
         if (result.rows.length === 0) {
+          // Si no existe, lo insertamos
           const newUser = await db.query(
-            "INSERT INTO users (email, password) VALUES ($1, $2)",
-            [profile.email, "google"]
+            "INSERT INTO users (email, google_id) VALUES ($1, $2) RETURNING *",
+            [userEmail, googleId]
           );
           return cb(null, newUser.rows[0]);
         } else {
+          // Si ya existe, lo devolvemos
           return cb(null, result.rows[0]);
         }
       } catch (err) {
@@ -120,7 +75,7 @@ passport.use(
   )
 );
 
-// --- SERIALIZACIÓN ---
+// 4. Serialización (Vital para que Passport funcione)
 passport.serializeUser((user, done) => {
   done(null, user);
 });
@@ -129,6 +84,36 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+// 5. Rutas
+app.get("/", (req, res) => res.render("home"));
+app.get("/login", (req, res) => res.render("login"));
+app.get("/register", (req, res) => res.render("register"));
+
+app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+app.get("/auth/google/secrets", 
+  passport.authenticate("google", {
+    successRedirect: "/secrets",
+    failureRedirect: "/login",
+  })
+);
+
+app.get("/secrets", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render("secrets");
+  } else {
+    res.redirect("/login");
+  }
 });
+
+app.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) console.log(err);
+    res.redirect("/");
+  });
+});
+
+app.listen(port, () => {
+  console.log(`🚀 Servidor listo en http://localhost:${port}`);
+});
+
