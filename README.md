@@ -1,33 +1,31 @@
-🚩 Flag Quiz - Backend & Relational Database Integration This interactive web application is designed to challenge users' geographical knowledge while demonstrating robust server-side logic and database management. It was developed as a key milestone within a professional Full Stack Web Development program.
+# Proyec-Secret: Centralized Development Repository
 
-🛠️ Technical Stack Runtime Environment: Node.js
+Welcome to the **proyec-secret** repository. This workspace functions as a central hub for various professional projects, ranging from architectural design services to automated sports data analysis and full-stack backend development.
 
-Web Framework: Express.js for sophisticated routing and middleware management
+## Repository Architecture
 
-Database Engine: PostgreSQL for relational data persistence and optimized country-flag indexing
+| Directory | Description |
+| :--- | :--- |
+| **Architect Services Portfolio** | Professional architectural designs, project documentation, and material specifications. |
+| **Backend** | Server-side logic, API endpoints, and business service infrastructure. |
+| **botgema** | The core automated engine for real-time sports data monitoring and intelligent alert dispatch. |
+| **database** | SQL schemas, database migration files, and persistence layer configurations. |
+| **docs** | Technical documentation, assembly manuals, and project requirements. |
 
-View Engine: EJS (Embedded JavaScript templates) for high-performance server-side rendering
+## Technical Implementation
 
-Styling: Custom CSS following modular design principles
+This repository is maintained under strict security and version control protocols:
 
-⚙️ Key Features Real-time Persistence: Seamless integration with a PostgreSQL database for live data retrieval.
+- **Modular Development**: Each component is decoupled to ensure maintainability and scalability.
+- **Dependency Management**: Standardized `package.json` and virtual environments are used to manage project dependencies.
+- **Security First**: 
+    - **Credential Decoupling**: Sensitive configuration (API keys, tokens, credentials) is never committed to version control.
+    - **Git Hardening**: A robust `.gitignore` file is active to prevent accidental leakage of sensitive files such as `.env` and `config.py`.
 
-State Management: Server-side cumulative scoring system logic.
+## Getting Started
 
-Robust Validation: Server-side response verification to ensure data integrity.
+To initialize this environment locally:
 
-Responsive Architecture: Fully adaptive UI themed around global iconography.
-
-📦 Installation & Configuration Clone the Repository:
-
-Bash git clone https://github.com/rodolfomartinezmiranda-png/Postgres-Flag-Quiz.git Dependency Management:
-
-Bash npm install Database Migration: Execute the provided SQL initialization scripts found in the introduction folder to set up your PostgreSQL schema.
-
-Environment Security: Create a .env file to securely abstract your database credentials.
-
-Execution:
-
-Bash nodemon index.js 👨‍💻 Engineering & Development Rodolfo Jose Martinez Miranda (Daedalus) Software Architect & Full Stack Developer Barranquilla, Colombia 🇨🇴
-
-Project maintained under the TrazoDigitalWeb brand — specialized technology consultancy and software solutions.
+1. **Clone the repository**:
+```bash
+   git clone [https://github.com/Daedalus-DevM240/proyec-secret.git](https://github.com/Daedalus-DevM240/proyec-secret.git)
